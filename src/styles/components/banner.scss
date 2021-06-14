@@ -1,0 +1,89 @@
+.main {
+    height: 55vh;
+    height: calc(var(--vh, 1vh) * 55);
+    background-color: $white;
+    .row {
+        flex-direction: column;
+        justify-content: center;
+        h2 {
+            font-family: 'Josefin Sans', sans-serif;
+            margin-top: 160px;
+            font-size: 2.1rem;
+            line-height: 3.2rem;
+            font-weight: 400;
+            z-index: 10;
+            color: $white;
+            mix-blend-mode: difference;
+            @include media('<=tablet') {
+                margin-top: 100px;
+                font-size: 2rem;
+                line-height: 2.8rem;
+            }
+            @include media('<=phone') {
+                margin-top: 64px;
+                font-size: 1.3rem;
+                line-height: 2.1rem;
+            }
+            .line {
+                margin-bottom: 4px;
+                height: 56px;
+                position: relative;
+                overflow: hidden;
+                @include media('<=tablet') {
+                    height: 48px;
+                }
+                @include media('<=phone') {
+                    height: 32px;
+                }
+                span {
+                    position: absolute;
+                }
+            }
+        }
+        .btn-row {
+            margin-bottom: 100px;
+            width: 240px;
+            position: relative;
+            z-index: 2;
+            a {
+                font-size: 1.3rem;
+                color: $black;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+                @include media('<=tablet') {
+                    font-size: 1.1rem;
+                }
+                @include media('<=phone') {
+                    font-size: 0.875rem;
+                }
+                svg {
+                    margin-left: 16px;
+                    border: 2px solid $black;
+                    padding: 12px;
+                    height: 18px;
+                    width: 18px;
+                    border-radius: 100px;
+                    transition: 0.4s ease-in-out;
+                    @include media('<=tablet') {
+                        padding: 6px;
+                        height: 20px;
+                        width: 20px;
+                    }
+                    @include media('<=phone') {
+                        padding: 4px;
+                        height: 16px;
+                        width: 16px;
+                    }
+                }
+                &:hover {
+                    svg {
+                        background: $black;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
