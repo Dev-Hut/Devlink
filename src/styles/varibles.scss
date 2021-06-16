@@ -1,2 +1,9 @@
 $black: #000000;
 $white: #ffffff;
+$yellow: #fff3d8;
+
+@mixin gradient($color1, $color2) {
+    background: -webkit-linear-gradient($color1, $color2);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

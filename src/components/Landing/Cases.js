@@ -1,9 +1,9 @@
 import React from 'react';
-import { ReactComponent as CasesNext } from '../assets/arrow-right.svg';
-import { ReactComponent as CasesPrev } from '../assets/arrow-left.svg';
-import img1 from '../assets/find3.jpg';
-import img2 from '../assets/keyboard-min.jpg';
-import img3 from '../assets/connect.jpg';
+import { ReactComponent as CasesNext } from '../../assets/arrow-right.svg';
+import { ReactComponent as CasesPrev } from '../../assets/arrow-left.svg';
+import img1 from '../../assets/find3.jpg';
+import img2 from '../../assets/keyboard-min.jpg';
+import img3 from '../../assets/connect.jpg';
 const cases = [
     {
         id: 1,

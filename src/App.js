@@ -1,59 +1,54 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
-import Header from './components/Header';
 import gsap from 'gsap';
 import './styles/App.scss';
 
-//pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Help from './pages/Help';
-import Profile from './pages/Profile';
+//exports
+import debounce from './exports/debounce';
+import routes from './exports/routes';
+//components
+import Header from './components/Header';
+import Navigation from './components/Navigation';
 
-//routes
-const routes = [
-    {
-        path: '/',
-        name: 'Home',
-        Component: Home,
-    },
-    {
-        path: '/about',
-        name: 'About',
-        Component: About,
-    },
-    {
-        path: '/help',
-        name: 'Help',
-        Component: Help,
-    },
-    {
-        path: '/profile',
-        name: 'Profile',
-        Component: Profile,
-    },
-];
-function App() {
+const App = () => {
+    const [dimensions, setDimensions] = useState({
+        height: window.innerHeight,
+        width: window.innerWidth,
+    });
     useEffect(() => {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        //preventing flash
         gsap.to('body', {
             duration: 0,
             visibility: 'visible',
         });
-    }, []);
+        let vh = dimensions.height * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+        const debounceHandleResize = debounce(() => {
+            setDimensions({
+                height: window.innerHeight,
+                width: window.innerWidth,
+            });
+        }, 1000);
+        window.addEventListener('resize', debounceHandleResize);
+
+        return () => {
+            window.removeEventListener('resize', debounceHandleResize);
+        };
+    });
     return (
         <>
-            <Header />
+            <Header dimensions={dimensions} />
             <div className='App'>
-                {routes.map(({ path, Component }) => (
-                    <Route key={path} exact path={path}>
+                {routes.map(({ path, Component, name }) => (
+                    <Route key={name} exact path={path}>
                         <Component />
                     </Route>
                 ))}
             </div>
+            <Navigation />
         </>
     );
-}
+};
 
 export default App;
